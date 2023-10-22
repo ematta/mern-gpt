@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   email: {
-    type: String, 
+    type: String,
     required: true,
     unique: true,
   },
@@ -34,4 +34,4 @@ const userSchema = new mongoose.Schema({
   chats: [chatSchema],
 });
 
-export default mongoose.model("User", userSchema); 
+export default mongoose.model("User", userSchema);

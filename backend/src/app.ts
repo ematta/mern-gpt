@@ -1,4 +1,4 @@
-import express from "express";;
+import express from "express";
 import { config } from "dotenv";
 import morgan from "morgan";
 import router from "./routes";
@@ -9,10 +9,12 @@ config();
 
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 

@@ -3,14 +3,14 @@ import { body, ValidationChain, validationResult } from "express-validator";
 
 export const validate = (validations: ValidationChain[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
-    for(let validation of validations) {
+    for (let validation of validations) {
       const result = await validation.run(req);
       if (!result.isEmpty) break;
     }
     const errors = validationResult(req);
-    if(errors.isEmpty()) return next();
+    if (errors.isEmpty()) return next();
     return res.status(422).json({ errors: errors.array() });
-  }
+  };
 };
 
 export const loginValidator = [
@@ -19,9 +19,13 @@ export const loginValidator = [
     .trim()
     .isLength({ min: 8 })
     .withMessage("Password is required (min length 8)"),
-]
+];
 
 export const signupValidator = [
   ...loginValidator,
   body("name").notEmpty().withMessage("Name is required"),
-]
+];
+
+export const chatCompletionValidator = [
+  body("message").notEmpty().withMessage("Message is required"),
+];
