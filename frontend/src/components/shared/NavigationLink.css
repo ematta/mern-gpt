@@ -1,0 +1,12 @@
+.navlink {
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-weight: "600";
+  cursor: "pointer";
+  transition: "all 0.2s ease-in-out";
+  text-transform: uppercase;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
