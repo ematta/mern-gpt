@@ -18,9 +18,11 @@ export const checkAuthStatus = async () => {
   return data;
 };
 
-
-// export const registerUser = async (
-//   name: string,
-//   email: string,
-//   password: string,
-// ) => {};
+export const sendChatMessage = async (message: string) => {
+  const response = await axios.post("/chat/new", { message });
+  if (response.status !== 200) {
+    throw new Error("Error sending message");
+  }
+  const data = await response.data;
+  return data;
+};

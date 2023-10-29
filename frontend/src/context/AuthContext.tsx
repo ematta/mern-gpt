@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { checkAuthStatus, loginUser } from '../helpers/api';
+import { createContext, useContext, useEffect, useState } from "react";
+import { checkAuthStatus, loginUser } from "../helpers/api";
 
 type User = {
   name: string;
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     async function checkAuth() {
       const data = await checkAuthStatus();
       if (data) {
-        setUser({email: data.email, name: data.name});
+        setUser({ email: data.email, name: data.name });
         setIsLoggedIn(true);
       } else {
         setUser(null);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (email: string, password: string) => {
     const data = await loginUser(email, password);
     if (data) {
-      setUser({email: data.email, name: data.name});
+      setUser({ email: data.email, name: data.name });
       setIsLoggedIn(true);
     }
   };
@@ -60,19 +60,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
   if (context === null) {
-    throw new Error('useAuth must be used within AuthProvider');
+    throw new Error("useAuth must be used within AuthProvider");
   }
 
   return context;
-}
+};
